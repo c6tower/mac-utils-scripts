@@ -17,9 +17,13 @@ on get_date(yomi)
 end get_date
 
 tell application "System Events"
+    -- カーソル位置を初期化するためにユーザ辞書を閉じている状態から始める
+    tell application "DictionaryTool" to quit
+    delay 0.05
+
     -- ユーザ辞書を開く
     tell application "DictionaryTool" to activate
-    delay 0.1
+    delay 0.05
 
     -- ユーザ辞書 "updated_daily" を選択する
     keystroke "u"
