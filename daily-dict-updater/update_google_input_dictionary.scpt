@@ -25,7 +25,7 @@ tell application "System Events"
     tell application "DictionaryTool" to activate
     delay 0.05
 
-    -- ユーザ辞書 "updated_daily" を選択する
+    -- ユーザ辞書 "update_daily_dict" を選択する
     keystroke "u"
 
     -- 単語を編集できる位置にカーソル移動する
