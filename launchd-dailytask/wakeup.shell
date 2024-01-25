@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# TODO: 環境に合わせて変更する
+LAST_EXEC_DATE_FILE_PATH=./last_exec_date.txt
+APPLESCRIPT_FILE_PATH=./update_google_input_dictionary.scpt
+
+LANG=ja_JP.UTF-8
+
+# 1日1回のみ実行するため、LAST_EXEC_DATE_FILE_PATHに記載の日付が当日である場合は、処理を終了する
+if [ -e $LAST_EXEC_DATE_FILE_PATH ] && [ `date +%Y%m%d` -eq `cat $LAST_EXEC_DATE_FILE_PATH` ]; then
+    touch ~/tmp_ng.txt
+    exit 0
+fi
+
+touch ~/tmp_ok.txt
+
+echo `date +%Y%m%d` > LAST_EXEC_DATE_FILE_PATH
+
+osascript APPLESCRIPT_FILE_PATH
