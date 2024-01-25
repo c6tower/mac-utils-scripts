@@ -16,8 +16,8 @@
 # `update_daily_dict.txt` ファイルをGoogle日本語入力の辞書にインポートする
 # （Google日本語入力のUIを開き、「管理 > 新規辞書にインポート > ファイル: `update_daily_dict.txt`, 辞書名: `update_daily_dict`」で設定できる）
 
-# `wakeup.shell` を必要に応じて編集した上で、 `~/.wakeup` にコピーする
-$ cp wakeup.shell ~/.wakeup
+# `~/.wake` に `sh wakeup.shell` を追記する
+$ echo 'sh ~/.wakeup' >> ~/.wake
 
 # `~/.wakeup` を実行可能にする
 $ chmod +x ~/.wakeup
