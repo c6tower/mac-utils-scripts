@@ -11,6 +11,6 @@ if [ -e $LAST_EXEC_DATE_FILE_PATH ] && [ `date +%Y%m%d` -eq `cat $LAST_EXEC_DATE
     exit 0
 fi
 
-echo `date +%Y%m%d` > LAST_EXEC_DATE_FILE_PATH
+echo `date +%Y%m%d` > $LAST_EXEC_DATE_FILE_PATH
 
-osascript APPLESCRIPT_FILE_PATH
+osascript $APPLESCRIPT_FILE_PATH
