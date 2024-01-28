@@ -1,9 +1,11 @@
 #!/bin/sh
 
 # TODO: 環境に合わせて変更する
-LAST_EXEC_DATE_FILE_PATH=./last_exec_date.txt
-APPLESCRIPT_FILE_PATH=./update_google_input_dictionary.scpt
-
+# 最新実行日時ファイルのパス
+LAST_EXEC_DATE_FILE_PATH=~/daily-dict-updater/last_exec_date.txt
+# AppleScriptのパス
+APPLESCRIPT_FILE_PATH=~/daily-dict-updater/update_google_input_dictionary.scpt
+# 言語設定
 LANG=ja_JP.UTF-8
 
 # 1日1回のみ実行するため、LAST_EXEC_DATE_FILE_PATHに記載の日付が当日である場合は、処理を終了する
@@ -11,6 +13,10 @@ if [ -e $LAST_EXEC_DATE_FILE_PATH ] && [ `date +%Y%m%d` -eq `cat $LAST_EXEC_DATE
     exit 0
 fi
 
-echo `date +%Y%m%d` > $LAST_EXEC_DATE_FILE_PATH
-
 osascript $APPLESCRIPT_FILE_PATH
+if [ $? -eq 1 ]; then
+    echo "`date +%Y-%m-%dT%H:%M:%S`: 辞書の更新に失敗しました" > $LAST_EXEC_DATE_FILE_PATH
+    exit 1
+fi
+
+echo `date +%Y%m%d` > $LAST_EXEC_DATE_FILE_PATH

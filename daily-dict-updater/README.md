@@ -12,12 +12,29 @@
 
 ## 使い方
 
+### 1. アプリケーションに必要なPC制御権限を付与する
+
+Macのシステム環境設定を開き「セキュリティとプライバシー > プライバシー > アクセシビリティ」から下記アプリケーションにチェックを入れる
+
+- sleepwatcher
+- ターミナル.app（もしくは任意のターミナルアプリ）
+
+### 2. `update_daily_dict.txt` ファイルをGoogle日本語入力の辞書ツールにインポートする
+
+Google日本語入力の辞書ツールを開き、「管理 > 新規辞書にインポート > ファイル: `update_daily_dict.txt`, 辞書名: `update_daily_dict`」で設定する
+
+> [!TIP]
+> 「他に `u` から始まる名前の辞書が存在する場合」「任意の辞書名を設定したい場合」など、辞書名の変更が必要な場合は `update_google_input_dictionary.scpt` ファイルの修正も必要となる。
+
+### 3. sleepwatcherの設定をする
+
 ```sh
-# `update_daily_dict.txt` ファイルをGoogle日本語入力の辞書にインポートする
-# （Google日本語入力のUIを開き、「管理 > 新規辞書にインポート > ファイル: `update_daily_dict.txt`, 辞書名: `update_daily_dict`」で設定できる）
+# 必要に応じてスクリプトのTODO箇所を修正する
+$ vi wakeup.shell
+$ vi update_google_input_dictionary.scpt
 
 # `~/.wake` に `sh wakeup.shell` を追記する
-$ echo 'sh ~/.wakeup' >> ~/.wake
+$ echo 'sh ~/daily-dict-updater/wakeup.shell' >> ~/.wake
 
 # `~/.wakeup` を実行可能にする
 $ chmod +x ~/.wakeup
@@ -26,13 +43,8 @@ $ chmod +x ~/.wakeup
 $ brew services start sleepwatcher
 ```
 
-以上で設定完了。
-以降、macOSのスリープから復帰するたびに、辞書の更新が行われる。
+以上で初期設定完了。
+以降、1日1回スリープから復帰するたびに辞書の更新が行われる。
 
-## 注意点
-
-- 初回実行時のみ、各種アプリケーションへのアクセス許可を求められる可能性があるため適宜許可する。
-    - この許可作業が発生した場合、処理が正常終了しない可能性ある
-    - その場合は、再度スリープしてから復帰することで、正常に処理が行われる
-- 辞書名は `u` から始まる必要があり、また他に `u` から始まる辞書が存在してはいけない
-    - この仕様は `update_google_input_dictionary.scpt` のユーザ辞書選択処理を編集することで変更可能
+> [!WARNING]
+> 処理が正常終了しなかった場合＝辞書の更新が上手くいかなかった場合、 `last_exec_date.txt` ファイルを削除して再度スリープから復帰すると再実行される。

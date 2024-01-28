@@ -17,15 +17,24 @@ on get_date(yomi)
 end get_date
 
 tell application "System Events"
+    -- TODO: 遅延時間は環境によって調整する
+    set longDelay to 0.5
+    set shortDelay to 0.1
+
+    -- デスクトップ画面に遷移する
+    key code 103
+    delay longDelay
+
     -- カーソル位置を初期化するためにユーザ辞書を閉じている状態から始める
     tell application "DictionaryTool" to quit
-    delay 0.05
+    delay longDelay
 
     -- ユーザ辞書を開く
     tell application "DictionaryTool" to activate
-    delay 0.05
+    delay longDelay
 
-    -- ユーザ辞書 "update_daily_dict" を選択する
+    -- "u" から始まる名前のユーザ辞書を選択する
+    -- TODO: 辞書名を変更する場合はこちらの値も変更する
     keystroke "u"
 
     -- 単語を編集できる位置にカーソル移動する
@@ -35,10 +44,10 @@ tell application "System Events"
     set targetDates to {"おととい", "きのう", "きょう", "あす", "あさって"}
     repeat with targetDate in targetDates
         -- クリップボードへの日付コピーは遅延が必要
-        delay 0.01
+        delay shortDelay
         set the clipboard to contents of targetDate
         keystroke "v" using {command down}
-        delay 0.01
+        delay shortDelay
         set the clipboard to my get_date(contents of targetDate)
         keystroke tab
         keystroke "v" using {command down}
@@ -47,6 +56,7 @@ tell application "System Events"
         end repeat
     end repeat
 
-    -- ユーザ辞書を閉じる
-    tell application "DictionaryTool" to quit
+    -- TODO: ユーザ辞書を閉じる設定はデフォルト無効なので、必要に応じて有効にする
+    -- delay shortDelay
+    -- tell application "DictionaryTool" to quit
 end tell
