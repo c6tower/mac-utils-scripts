@@ -21,6 +21,10 @@ tell application "System Events"
     set longDelay to 0.5
     set shortDelay to 0.1
 
+    -- スリープから復帰して2以内にパスワード入力完了している前提の処理のため
+    -- TODO: "パスワード入力完了済み＝デスクトップ画面に遷移できる状態であること" を何かしらの方法で検知する
+    delay 2
+
     -- デスクトップ画面に遷移する
     key code 103
     delay longDelay
