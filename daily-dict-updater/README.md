@@ -33,8 +33,8 @@ Google日本語入力の辞書ツールを開き、「管理 > 新規辞書に�
 $ vi wakeup.shell
 $ vi update_google_input_dictionary.scpt
 
-# `~/.wake` に `sh wakeup.shell` を追記する
-$ echo 'sh ~/daily-dict-updater/wakeup.shell' >> ~/.wake
+# `~/.wakeup` に `sh wakeup.shell` を追記する
+$ echo 'sh ~/daily-dict-updater/wakeup.shell' >> ~/.wakeup
 
 # `~/.wakeup` を実行可能にする
 $ chmod +x ~/.wakeup
