@@ -1,0 +1,37 @@
+{
+  // vim
+  "vim.insertModeKeyBindings": [
+    {
+       // use `jj` to escape insert mode
+      "before": ["j", "j"],
+      "after": ["<Esc>"],
+    }
+  ],
+  "vim.hlsearch": true, // highlight search results
+  "vim.overrideCopy": false, // use system clipboard
+
+  "[markdown]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+  },
+  "[go]": {
+    "editor.tabSize": 4,
+    "editor.insertSpaces": false, // use tabs
+  },
+  "[python]": {
+    "editor.formatOnType": true,
+  },
+
+  "explorer.confirmDragAndDrop": false, // disable drag and drop
+  "extensions.ignoreRecommendations": true, // disable extension recommendations
+  "explorer.confirmDelete": false, // disable delete confirmation
+
+  // github copilot
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": false,
+    "markdown": true,
+    "scminput": false,
+    "editor.action.inlineSuggest.showNext": true,
+  },
+}
