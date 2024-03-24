@@ -1,0 +1,21 @@
+// Place your key bindings in this file to override the defaultsauto[]
+[
+  {
+    // Open terminal
+    "key": "ctrl+t",
+    "command": "workbench.action.terminal.focus",
+    "when": "editorTextFocus"
+  },
+
+  // GitHub Copilot
+  {
+    "key": "ctrl+]",
+    "command": "editor.action.inlineSuggest.showNext",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+[",
+    "command": "editor.action.inlineSuggest.showPrevious",
+    "when": "editorTextFocus"
+  },
+]
