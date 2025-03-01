@@ -1,10 +1,21 @@
 // Place your key bindings in this file to override the defaultsauto[]
 [
+  // terminal shortcuts
   {
     // Open terminal
     "key": "ctrl+t",
     "command": "workbench.action.terminal.focus",
     "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+d",
+    "command": "workbench.action.terminal.focusNext",
+    "when": "terminalFocus"
+  },
+  {
+      "key": "ctrl+u",
+      "command": "workbench.action.terminal.focusPrevious",
+      "when": "terminalFocus"
   },
 
   // GitHub Copilot
